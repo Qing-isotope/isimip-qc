@@ -8,7 +8,7 @@ def check_experiment(file):
     experiment = get_experiment(file.specifiers)
     if experiment is None:
         file.critical(
-            "No valid experiment found for {climate_scenario}, {soc_scenario}, {sens_scenario} between {start_year} and {end_year}.".format(
+            'No valid experiment found for {climate_scenario}, {soc_scenario}, {sens_scenario} between {start_year} and {end_year}.'.format(  # noqa: E501
                 **file.specifiers
             )
         )
