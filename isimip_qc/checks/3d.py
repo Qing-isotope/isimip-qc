@@ -40,12 +40,14 @@ def check_3d(file):
 
     if 'dimensions' in definition:
         settings_dim_len = len(definition['dimensions'])
+        if file_dim_len != settings_dim_len:
+            file.critical('Dimension missing (%s found, %s expected). Declare as %s%s. ',
+                        file_dim_len, settings_dim_len, file.variable_name, str(definition['dimensions']).replace('\'',''))
     else:
         settings_dim_len = 3
-
-    if file_dim_len != settings_dim_len:
-        file.critical('Dimension missing (%s found, %s expected). Declare as %s%s. ',
-                      file_dim_len, settings_dim_len, file.variable_name, str(definition['dimensions']).replace('\'',''))
+        if file_dim_len != settings_dim_len:
+            file.critical('Dimension missing (%s found, %s expected). Declare as %s%s. ',
+                        file_dim_len, settings_dim_len, file.variable_name, " unspecified dimension")
 
     # detect 2d or 3d data
     file.is_time_fixed = False
